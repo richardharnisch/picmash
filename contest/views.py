@@ -4,13 +4,19 @@ from .models import ImageEntry
 import random
 
 def index(request):
-    all_ids = list(ImageEntry.objects.values_list('id', flat=True))
-    if len(all_ids) < 2:
+    # Fetch all ImageEntry objects
+    entries = list(ImageEntry.objects.all())
+    if len(entries) < 2:
         return render(request, 'contest/not_enough.html')
 
-    img1_id, img2_id = random.sample(all_ids, 2)
-    img1 = get_object_or_404(ImageEntry, id=img1_id)
-    img2 = get_object_or_404(ImageEntry, id=img2_id)
+    # 1) Pick one image at random
+    img1 = random.choice(entries)
+
+    # 2) Build a list of the remaining entries
+    others = [e for e in entries if e.id != img1.id]
+
+    # 3) Find the one with the closest rating to img1.rating
+    img2 = min(others, key=lambda e: abs(e.rating - img1.rating))
 
     return render(request, 'contest/index.html', {
         'img1': img1,
