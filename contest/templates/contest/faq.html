@@ -1,0 +1,73 @@
+<!-- contest/templates/contest/faq.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>FAQ – Photomash Contest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        h1 {
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+        p {
+            margin-bottom: 20px;
+            color: #cccccc;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin: 40px 0;
+        }
+        a {
+            color: #90caf9;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+
+        <h2>What is this?</h2>
+        <p>
+            I thought that Studentenkrant's board picture rankings were a bit iffy for some of them. But I don't think that I am the ultimate arbiter of photography so I made this page where everyone can vote.
+            The entries are simply all the pictures that were ranked by Studentenkrant. See <a href="https://studentenkrant.org/2025/05/board-picture-awards-24-25/">here</a>.
+        </p>
+
+        <h2>How is the leaderboard calculated?</h2>
+        <p>
+            Each time two images are compared, their Elo ratings are updated based on the outcome. Images that win more often against closely rated opponents will climb higher on the leaderboard. The default rating is 1500. The system tries to present to images with similar ratings so your choice is more informative for the leaderboard.
+        </p>
+
+        <h2>Can I vote multiple times on the same images?</h2>
+        <p>
+            At this time, the system does not restrict repeat votes from the same visitor. For fair results, please try to vote honestly and avoid repeatedly selecting the same image matchup.
+        </p>
+    </div>
+</body>

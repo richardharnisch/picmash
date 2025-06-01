@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "django-server-kvorv.ondigitalocean.app",
+    "127.0.0.1",
 ]
 
 

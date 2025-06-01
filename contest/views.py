@@ -72,3 +72,6 @@ def leaderboard(request):
     return render(request, 'contest/leaderboard.html', {
         'entries': entries,
     })
+
+def faq_view(request):
+    return render(request, 'contest/faq.html')
