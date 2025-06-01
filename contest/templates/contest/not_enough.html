@@ -1,0 +1,17 @@
+<!-- contest/templates/contest/not_enough.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Not Enough Images</title>
+</head>
+<body>
+    <h1>Contest Not Ready</h1>
+    <p>You need at least two images in the database to start comparisons.</p>
+    <p>
+        Go to the
+        <a href="{% url 'admin:index' %}">admin site</a>
+        and upload or add more images.
+    </p>
+</body>
+</html>

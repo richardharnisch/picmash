@@ -1,0 +1,105 @@
+<!-- contest/templates/contest/leaderboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Leaderboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            font-weight: normal;
+            margin: 20px 0;
+        }
+        .table-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        th {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+            font-weight: normal;
+        }
+        td {
+            background-color: #181818;
+        }
+        tr:hover td {
+            background-color: #2a2a2a;
+        }
+        img.thumb {
+            max-width: 80px;
+            max-height: 80px;
+            display: block;
+            margin: 0 auto;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px 0;
+            background-color: #181818;
+        }
+        a {
+            color: #90caf9;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leaderboard</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Elo Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <img class="thumb" src="{{ entry.image.url }}" alt="{{ entry.name }}">
+                        </td>
+                        <td>{{ entry.name }}</td>
+                        <td>{{ entry.rating|floatformat:0 }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4" style="text-align: center;">No images yet.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <a href="{% url 'contest:index' %}">Back to Voting</a>
+    </div>
+</body>
+</html>

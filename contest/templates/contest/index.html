@@ -1,0 +1,108 @@
+<!-- contest/templates/contest/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Photomash Contest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            font-weight: normal;
+            margin: 20px 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 120px);
+        }
+        .image-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            overflow: hidden;
+        }
+        .image-container form {
+            width: 100%;
+            height: 100%;
+        }
+        .image-container button {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .name {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #bbbbbb;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #181818;
+        }
+        a {
+            color: #90caf9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Which photo do you like more?</h1>
+    <div class="container">
+        <div class="image-container">
+            <form method="post" action="{% url 'contest:vote' %}">
+                {% csrf_token %}
+                <input type="hidden" name="winner_id" value="{{ img1.id }}">
+                <input type="hidden" name="loser_id"  value="{{ img2.id }}">
+                <button type="submit">
+                    <img src="{{ img1.image.url }}" alt="{{ img1.name }}">
+                </button>
+            </form>
+            <div class="name">{{ img1.name }}</div>
+        </div>
+
+        <div class="image-container">
+            <form method="post" action="{% url 'contest:vote' %}">
+                {% csrf_token %}
+                <input type="hidden" name="winner_id" value="{{ img2.id }}">
+                <input type="hidden" name="loser_id"  value="{{ img1.id }}">
+                <button type="submit">
+                    <img src="{{ img2.image.url }}" alt="{{ img2.name }}">
+                </button>
+            </form>
+            <div class="name">{{ img2.name }}</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="{% url 'contest:leaderboard' %}">View Leaderboard</a>
+    </div>
+</body>
+</html>
